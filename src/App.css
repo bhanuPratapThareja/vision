@@ -3,7 +3,8 @@
 html,
 body,
 #root,
-.app {
+.app
+.content {
     width: 100%;
     height: 100%;
     font-family: 'Source Sans 3', sans-serif;
@@ -12,6 +13,7 @@ body,
 .app {
     display: flex;
     position: relative;
+    border: 4px solid #141b2d;
 }
 
 ::-webkit-scrollbar {
