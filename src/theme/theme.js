@@ -106,6 +106,10 @@ const lightModeColors = {
     }
 }
 
+// export const themeTokens = mode => {
+//     return mode === 'dark' ? darkModeColors : lightModeColors
+// }
+
 export const themeTokens = mode => ({
     ...(mode === 'dark' ? darkModeColors : lightModeColors)
 })
@@ -117,27 +121,25 @@ export const themeSettings = mode => {
         palette: {
             mode,
             ...(mode === 'dark' ? {
-                    primary: { main: colors.primary[500] },
-                    secondary: { main: colors.secondary[500] },
-                    neutral: {
-                        dark: colors.grey[700],
-                        main: colors.grey[500],
-                        light: colors.grey[100]
-                    },
-                    background: { default: colors.primary[500]}
-                } : 
-                {
-                    primary: { main: colors.primary[100] },
-                    secondary: { main: colors.secondary[500] },
-                    neutral: {
-                        dark: colors.grey[700],
-                        main: colors.grey[500],
-                        light: colors.grey[100]
-                    },
-                    background: { default: '#fcfcfc' }
-                }),
-            // primary: mode === 'dark' ? { main: colors.primary[500]} : { main: colors.greenAccent[500] },
-            // secondary: mode === 'dark' ? { main: colors.secondary[500]} : { main: colors.secondary[500] }
+                primary: { main: colors.primary[500] },
+                secondary: { main: colors.secondary[500] },
+                neutral: {
+                    dark: colors.grey[700],
+                    main: colors.grey[500],
+                    light: colors.grey[100]
+                },
+                background: { default: colors.primary[700] }
+            } : 
+            {
+                primary: { main: colors.primary[100] },
+                secondary: { main: colors.secondary[500] },
+                neutral: {
+                    dark: colors.grey[700],
+                    main: colors.grey[500],
+                    light: colors.grey[100]
+                },
+                background: { default: '#eee' }
+            }),
         },
         typography: {
             fontFamily: ['Source Sans 3', 'sans-serif'].join(','),
@@ -169,10 +171,3 @@ export const themeSettings = mode => {
         }
     }
 }
-
-
-// #666666
-// #141b2d
-// #4cceac
-// #db4f4a
-// #6870fa

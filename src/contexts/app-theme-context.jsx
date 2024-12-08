@@ -15,8 +15,8 @@ const AppThemeProvider = ({ children }) => {
     useEffect(() => {
         const appTheme = createTheme(themeSettings(mode))
         const colors = themeTokens(mode)
-        setColors(colors)
         setTheme(appTheme)
+        setColors(colors)
     }, [mode])
 
     const toggleColorMode = () => {

@@ -9,7 +9,7 @@ function App() {
   return (
     <AppThemeProvider>
       <div className="app">
-          <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </div>
     </AppThemeProvider>
   )
