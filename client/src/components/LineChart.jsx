@@ -4,7 +4,6 @@ import { useTheme } from "@mui/material"
 import { themeTokens } from "../theme/theme"
 
 export default function LineChart({ data, isDashboard = false }) {
-    console.log('isDashboard: ', isDashboard)
     const theme = useTheme()
     const colors = themeTokens(theme.palette.mode)
 

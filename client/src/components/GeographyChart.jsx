@@ -58,13 +58,26 @@ export default function GeographyChart({ data, geoFeatures, isDashboard = false 
             unknownColor={colors.grey[100]}
             label="properties.name"
             valueFormat=".2s"
+            projectionType="mercator"
             projectionScale={isDashboard ? 40 : 100}
             projectionTranslation={isDashboard ? [0.49, 0.6] : [ 0.5, 0.5 ]}
             projectionRotation={[ 0, 0, 0 ]}
             enableGraticule={false}
+            fillColor="red"
             graticuleLineColor={colors.secondary[500]}
+            graticuleLineWidth={1}
+            isInteractive={true}
             borderWidth={0.5}
             borderColor={colors.grey[100]}
+            onMouseEnter={() => {}}
+            onMouseMove={() => {}}
+            onMouseLeave={() => {}}
+            onClick={() => {}}
+            layers={['graticule', 'features']}
+            // role={}
+            // match={null}
+            // value=''
+            // colors="blues"
             legends={!isDashboard ? 
                 [{
                     anchor: 'bottom-left',
@@ -79,6 +92,7 @@ export default function GeographyChart({ data, geoFeatures, isDashboard = false 
                     itemTextColor: colors.secondary[100],
                     itemOpacity: 1,
                     symbolSize: 18,
+                    
                     effects: [
                         {
                             on: 'hover',
