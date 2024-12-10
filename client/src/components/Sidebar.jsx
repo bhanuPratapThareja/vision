@@ -51,7 +51,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   }),
 );
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft({ user }) {
   const theme = useTheme();
   const colors = themeTokens(theme.palette.mode)
   const [open, setOpen] = useState(false);
@@ -66,70 +66,71 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <IconButton
-        color="inherit"
-        onClick={handleDrawerOpen}
-        edge="start"
-        sx={[
-          {
-            ml: 2,
-            mr: 4,
-            position: 'absolute',
-            top: 16,
-          },
-          open && { display: 'none' },
-        ]}
-      >
-        <MenuOutlined />
-      </IconButton>
+    <nav>
+      <Box sx={{ display: 'flex' }}>
+        <IconButton
+          color="inherit"
+          onClick={handleDrawerOpen}
+          edge="start"
+          sx={[
+            {
+              ml: 2,
+              mr: 4,
+              position: 'absolute',
+              top: 16,
+            },
+            open && { display: 'none' },
+          ]}
+        >
+          <MenuOutlined />
+        </IconButton>
 
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
+        <Drawer
+          sx={{
             width: drawerWidth,
-            boxSizing: 'border-box',
-            backgroundColor: colors.primary[600]
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose} style={{ color: 'white'}}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </DrawerHeader>
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+              boxSizing: 'border-box',
+              backgroundColor: colors.primary[600]
+            },
+          }}
+          variant="persistent"
+          anchor="left"
+          open={open}
+        >
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose} style={{ color: 'white'}}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </DrawerHeader>
 
-        <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center' mb={4}>
-            <AccountCircle sx={{ height: '100px', width: '100px', color: colors.secondary[500] }} />
-            <Typography variant='h2' fontWeight={900} color={colors.secondary[500]}>User Admin</Typography>
-            <Typography fontWeight={700} color={colors.secondary[500]}>Company</Typography>
-        </Box>
-       
-       <Divider />
+          <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center' mb={2}>
+              <AccountCircle sx={{ height: '100px', width: '100px', color: colors.secondary[500] }} />
+              <Typography variant='h2' fontWeight={900} color={colors.secondary[500]}>{user ? user.name : "User Admin"}</Typography>
+              <Typography textAlign="center" fontWeight={700} color={colors.secondary[500]}>{user ? user.occupation : "Company"}</Typography>
+          </Box>
+        
+        <Divider />
 
-      <SidebarMenu
-        colors={colors} 
-        selected={selected}
-        setSelected={setSelected} 
-        setOpen={setOpen}
-      />
-      </Drawer>
+        <SidebarMenu
+          colors={colors} 
+          selected={selected}
+          setSelected={setSelected} 
+          setOpen={setOpen}
+        />
+        </Drawer>
 
-      <Main open={open} sx={{ padding: 0 }}>
-        <header>
-          <Header sidebarOpen={open} />
-        </header>
-        <main>
-          <Outlet />
-        </main>
-      </Main>
+        <Main open={open} sx={{ padding: 0 }}>
+          <header>
+            <Header sidebarOpen={open} user={user} />
+          </header>
+          <main>
+            <Outlet />
+          </main>
+        </Main>
 
-      
-    </Box>
+      </Box>
+    </nav>
   );
 }

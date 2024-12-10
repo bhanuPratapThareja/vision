@@ -1,11 +1,11 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
-import { themeTokens } from "../theme/theme";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import EmailIcon from "@mui/icons-material/Email";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import TrafficIcon from "@mui/icons-material/Traffic";
-import Header from "../components/Header";
 import LineChart from "../components/LineChart";
 import GeographyChart from "../components/GeographyChart";
 import BarChart from "../components/BarChart";
@@ -14,27 +14,68 @@ import ProgressCircle from "../components/ProgressCircle";
 
 import { mockTransactions, mockGeographyData, mockBarData, mockLineData } from "../data/mockData";
 import { geoFeatures } from "../data/mockGeoFeatures";
+import { themeTokens } from "../theme/theme";
 import PageHeading from "../shared/PageHeading";
 
+import { faker } from "@faker-js/faker";
+import { useAddUserMutation, useFetchUserQuery, useDeleteUserMutation, userActions } from '../store'
+
 const Dashboard = () => {
+  let userId;
+  const dispatch = useDispatch()
   const theme = useTheme();
   const colors = themeTokens(theme.palette.mode);
+
+  const [addUser, results] = useAddUserMutation()
+  const [deleteUser, deleteResults] = useDeleteUserMutation()
+
+  console.log('deleteResults: ', deleteResults)
+
+  // const { data, isLoading, isError } = useFetchUserQuery(userId)
+  // console.log('fetched data: ', data)
+
+  const onAddUser = () => {
+    const user = {
+      name: faker.person.firstName(),
+      email: faker.internet.email(),
+      password: faker.internet.password(),
+      city: faker.location.city(),
+      state: faker.location.state(),
+      country: faker.location.country(),
+      occupation: faker.person.jobTitle(),
+      phoneNumber: faker.phone.number({ style: 'national'}),
+      transactions: [],
+      role: 'admin'
+    }
+    addUser(user)
+      // .then(res => {
+      //   // console.log('add user res: ', res)
+      //   dispatch(userActions.setUserId(res.data.user.id))
+      // })
+      // .catch(err => console.log('add user err: ', err))
+      // .finally(() => console.log('finally'))
+  }
+
+  const onDeleteUser = () => {
+    deleteUser('6757bfb2775bcd2c69bc3d9d')
+  }
 
   return (
     <Box m="20px">
       {/* HEADER */}
+      
       <Box display="flex" justifyContent="space-between" alignItems="center" my={4}>
         <PageHeading title="DASHBOARD" subtitle="Welcome to your dashboard" />
-
         <Box>
           <Button
             sx={{
-              backgroundColor: colors.blueAccent[700],
+              // backgroundColor: theme.palette.[700],
               color: colors.grey[100],
               fontSize: "14px",
               fontWeight: "bold",
               padding: "10px 20px",
             }}
+            onClick={onDeleteUser}
           >
             <DownloadOutlinedIcon sx={{ mr: "10px" }} />
             Download Reports
@@ -43,16 +84,17 @@ const Dashboard = () => {
       </Box>
 
       {/* GRID & CHARTS */}
-      <Box
-        display="grid"
-        gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="140px"
-        gap="20px"
-      >
+
         {/* ROW 1 */}
+      <Box
+        display="flex"
+        gap={4}
+        flexWrap="wrap"
+        minWidth="150px"
+      >
         <Box
-          gridColumn="span 3"
-          backgroundColor={colors.primary[600]}
+          flex={1}
+          backgroundColor={colors.primary[500]}
           display="flex"
           alignItems="center"
           justifyContent="center"
@@ -71,8 +113,8 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn="span 3"
-          backgroundColor={colors.primary[600]}
+         flex={1}
+          backgroundColor={colors.primary[500]}
           display="flex"
           alignItems="center"
           justifyContent="center"
@@ -91,8 +133,8 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn="span 3"
-          backgroundColor={colors.primary[600]}
+         flex={1}
+          backgroundColor={colors.primary[500]}
           display="flex"
           alignItems="center"
           justifyContent="center"
@@ -111,8 +153,8 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn="span 3"
-          backgroundColor={colors.primary[600]}
+          flex={1}
+          backgroundColor={colors.primary[500]}
           display="flex"
           alignItems="center"
           justifyContent="center"
@@ -131,7 +173,12 @@ const Dashboard = () => {
           />
         </Box>
 
+      </Box>
+
+
         {/* ROW 2 */}
+      <Box>
+        
         <Box
           gridColumn="span 8"
           gridRow="span 2"
@@ -223,7 +270,10 @@ const Dashboard = () => {
           ))}
         </Box>
 
+      </Box>
+
         {/* ROW 3 */}
+      <Box>
         <Box
           gridColumn="span 4"
           gridRow="span 2"
@@ -284,6 +334,7 @@ const Dashboard = () => {
           </Box>
         </Box>
       </Box>
+
     </Box>
   );
 };

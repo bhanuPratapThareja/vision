@@ -103,8 +103,8 @@ export const themeSettings = mode => {
                     dark: tokensDark.grey[700],
                 },
                 background: { 
-                    default: tokensDark.primary[600] ,
-                    alt: tokensDark.primary[500] ,
+                    default: tokensDark.primary[600],
+                    alt: tokensDark.primary[500],
                 }
             } : 
             {
@@ -157,6 +157,5 @@ export const themeSettings = mode => {
             },
         }
     }
-    console.log('newThemePalette: ', newThemePalette)
     return newThemePalette
 }

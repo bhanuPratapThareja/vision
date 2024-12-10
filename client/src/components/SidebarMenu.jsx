@@ -1,24 +1,23 @@
 import { Link, useLocation } from 'react-router-dom';
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material'
 import {
+    Person2Outlined,
     HomeOutlined,
-    PeopleOutlined,
-    ContactsOutlined,
-    ReceiptOutlined,
-    PersonOutlined,
-    CalendarTodayOutlined,
-    HelpOutlineOutlined,
-    BarChartOutlined,
-    PieChartOutlineOutlined,
-    TimelineOutlined,
-    MenuOutlined,
-    MapOutlined,
+    ShoppingCartOutlined,
+    Groups2Outlined,
+    ReceiptLongOutlined,
+    PublicOutlined,
+    PointOfSaleOutlined,
+    TodayOutlined,
+    CalendarMonthOutlined,
+    PieChartOutlined,
+    AdminPanelSettingsOutlined,
+    TrendingUpOutlined,
   } from '@mui/icons-material'
   import { themeTokens } from "../theme/theme";
 
 export default function SidebarMenu(props) {
     const theme = useTheme();
-    const colors = themeTokens(theme.palette.mode);
 
     const location = useLocation()
     const menuItems = [
@@ -29,65 +28,79 @@ export default function SidebarMenu(props) {
         },
         {
             kind: 'header',
-            title: 'Main items',
+            title: 'Client Facing',
         },
         {
-            title: 'Manage Team',
-            path: '/team',
-            icon: <PeopleOutlined />
+            title: 'Products',
+            path: '/products',
+            icon: <ShoppingCartOutlined />
         },
         {
-            title: 'Contacts Information',
-            path: '/contacts',
-            icon: <ContactsOutlined />
+            title: 'Customers',
+            path: '/customers',
+            icon: <Groups2Outlined />
         },
         {
-            title: 'Invoices Balances',
+            title: 'Transactions',
             path: '/invoices',
-            icon: <ReceiptOutlined />
+            icon: <ReceiptLongOutlined />
+        },
+        {
+            title: 'Geograpy',
+            path: '/invoices',
+            icon: <PublicOutlined />
         },
         {
             kind: 'header',
-            title: 'Pages',
+            title: 'Sales',
         },
         {
-            title: 'Profile Form',
+            title: 'Overview',
             path: '/form',
-            icon: <PersonOutlined />
+            icon: <PointOfSaleOutlined />
         },
         {
-            title: 'Calendar',
+            title: 'Daily',
             path: '/calendar',
-            icon: <CalendarTodayOutlined />
+            icon: <TodayOutlined />
         },
         {
-            title: 'FAQ Page',
+            title: 'Monthly',
             path: '/faq',
-            icon: <HelpOutlineOutlined />
+            icon: <CalendarMonthOutlined />
+        },
+        {
+            title: 'Breakdown',
+            path: '/faq',
+            icon: <PieChartOutlined />
         },
         {
             kind: 'header',
-            title: 'Charts',
+            title: 'Management',
         },
         {
-            title: 'Bar Chart',
+            title: 'Admin',
             path: '/bar',
-            icon: <BarChartOutlined />
+            icon: <AdminPanelSettingsOutlined />
         },
         {
-            title: 'Pie Chart',
+            title: 'Performance',
             path: '/pie',
-            icon: <PieChartOutlineOutlined />
+            icon: <TrendingUpOutlined />
         },
         {
-            title: 'Line Chart',
-            path: '/line',
-            icon: <TimelineOutlined />
+            kind: 'header',
+            title: 'Administration',
         },
         {
-            title: 'Geography Chart',
-            path: '/geography',
-            icon: <MapOutlined />
+            title: 'Team',
+            path: '/team',
+            icon: <Person2Outlined />
+        },
+        {
+            title: 'Contacts',
+            path: '/contacts',
+            icon: <Groups2Outlined />
         },
     ]
 
@@ -115,14 +128,15 @@ export default function SidebarMenu(props) {
                         key={item.title} 
                         to={item.path}  
                         onClick={() => onMenuSelection(item.path)}
-                        style={{ textDecoration: 'none'  }}
+                        style={{ textDecoration: 'none' }}
                     >
-                        <ListItem>
-                            <ListItemButton>
-                                <ListItemIcon style={{ color: 'white' }}>
+                        <ListItem disablePadding>
+                            <ListItemButton >
+                                <ListItemIcon sx={{ color: location.pathname === item.path ? theme.palette.secondary[600] : 'white' }}>
                                     {item.icon}
                                 </ListItemIcon>
-                                <ListItemText primary={item.title} style={{ color: location.pathname === item.path ? colors.blueAccent[500] : '#FFF' }} />
+                                <ListItemText primary={item.title} sx={{ 
+                                    color: location.pathname === item.path ? theme.palette.secondary[600] : 'white' }} />
                             </ListItemButton>
                         </ListItem>
                     </Link>

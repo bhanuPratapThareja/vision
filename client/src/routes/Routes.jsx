@@ -2,8 +2,13 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import RootLayout from '../layouts/RootLayout'
 import Dashboard from '../pages/Dashboard'
+
+import Products from '../pages/Products'
+import Customers from '../pages/Customers'
+
 import Team from '../pages/Team'
 import Contacts from '../pages/Contacts'
+
 import Invoices from '../pages/Invoices'
 import Form from '../pages/Form'
 import Bar from '../pages/Bar'
@@ -19,6 +24,8 @@ export const router = createBrowserRouter([
         element: <RootLayout />,
         children: [
             { path: '/', element: <Dashboard /> },
+            { path: '/products', element: <Products /> },
+            { path: '/customers', element: <Customers /> },
             { path: '/team', element: <Team /> },
             { path: '/contacts', element: <Contacts /> },
             { path: '/invoices', element: <Invoices /> },

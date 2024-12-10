@@ -1,28 +1,26 @@
-import { useContext } from 'react'
-import { CssBaseline, ThemeProvider as MaterialThemProvider  } from '@mui/material'
+import { useMemo } from 'react'
+import { useSelector } from 'react-redux'
+import { CssBaseline, ThemeProvider, createTheme  } from '@mui/material'
 
 import Sidebar from '../components/Sidebar'
-import { AppThemeContext } from '../contexts/app-theme-context'
+
+import { themeSettings } from '../theme/theme'
+import { useFetchUserQuery } from '../store'
 
 export default function RootLayout() {
-  const { theme } = useContext(AppThemeContext)
+  let userId;
+  const { mode } = useSelector(state => state.theme)
+  // const { userId } = useSelector(state => state.user)
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
+  const { data } = useFetchUserQuery('userId', {
+   
+  })
+  console.log('rootlayout re render fetch: ', data)
 
   return (
-        <MaterialThemProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <CssBaseline />
-
-          {/* <header>
-            <Header />
-          </header> */}
-
-          <nav>
-            <Sidebar />
-          </nav>
-
-          {/* <main>
-            <Outlet />
-          </main> */}
-          
-        </MaterialThemProvider>
+          <Sidebar user={data?.user} />
+        </ThemeProvider>
   )
 }
