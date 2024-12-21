@@ -21,12 +21,13 @@ export default function Header(props) {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }} p={2}>
         
         {/* Search Bar */}
-        <Box display="flex" borderRadius={2} border="1px solid grey" ml={props.sidebarOpen ? 0 : 6} >
+        {/* <Box display="flex" borderRadius={2} border="1px solid grey" ml={props.sidebarOpen ? 0 : 6} >
           <InputBase sx={{ ml: 2, flex: 1, minWidth: '100px'  }} placeholder='Search' />
           <IconButton type='button' sx={{ p: 1 }}>
             <SearchTwoTone />
           </IconButton>
-        </Box>
+        </Box> */}
+        <Box></Box>
 
         {/* Icons */}
         <Box display="flex">

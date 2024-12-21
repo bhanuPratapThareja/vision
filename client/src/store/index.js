@@ -26,5 +26,5 @@ setupListeners(store.dispatch)
 export { themeActions } from './slices/theme-slice'
 export { userActions } from './slices/user-slice'
 export { useFetchUserQuery, useAddUserMutation, useDeleteUserMutation } from './apis/usersApi'
-export { useFetchProductsQuery } from './apis/clientsApi'
+export { useFetchProductsQuery, useFetchCustomersQuery, useFetchTransactionsQuery, useFetchGeographyQuery } from './apis/clientsApi'
 export default store

@@ -1,108 +1,80 @@
 import { ResponsiveChoropleth } from '@nivo/geo'
 import { useTheme } from "@mui/material"
 
-import { themeTokens } from "../theme/theme"
-
 export default function GeographyChart({ data, geoFeatures, isDashboard = false }) {
     const theme = useTheme()
-    const colors = themeTokens(theme.palette.mode)
 
     return (
         <ResponsiveChoropleth
             data={data}
             features={geoFeatures.features}
-            theme={{
-                "axis": {
-                    "domain": {
-                        "line": {
-                            "stroke": colors.grey[100],
-                            "strokeWidth": 1
-                        }
-                    },
-                    "legend": {
-                        "text": {
-                            "fontSize": 12,
-                            "fill": colors.grey[100],
-                        }
-                    },
-                    "ticks": {
-                        "line": {
-                            "stroke": colors.grey[100],
-                            "strokeWidth": 1
-                        },
-                        "text": {
-                            "fontSize": 11,
-                            "fill": colors.grey[100],
-                        }
-                    }
-                },
-                "legends": {
-                    "title": {
-                        "text": {
-                            "fontSize": 11,
-                            "fill": colors.grey[100],
-                            "outlineWidth": 0,
-                            "outlineColor": "transparent"
-                        }
-                    },
-                    "text": {
-                        "fontSize": 11,
-                        "fill": colors.grey[100],
-                        "outlineWidth": 0,
-                        "outlineColor": "transparent"
-                    },
-                }
-            }}
             margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
-            domain={[ 0, 1000000 ]}
-            unknownColor={colors.grey[100]}
+            colors="blues"
+            domain={[ 0, 60 ]}
+            unknownColor="#666666"
             label="properties.name"
             valueFormat=".2s"
-            projectionType="mercator"
-            projectionScale={isDashboard ? 40 : 100}
-            projectionTranslation={isDashboard ? [0.49, 0.6] : [ 0.5, 0.5 ]}
+            projectionTranslation={[ 0.4, 0.5 ]}
             projectionRotation={[ 0, 0, 0 ]}
             enableGraticule={false}
-            fillColor="red"
-            graticuleLineColor={colors.secondary[500]}
-            graticuleLineWidth={1}
-            isInteractive={true}
+            graticuleLineColor="#dddddd"
             borderWidth={0.5}
-            borderColor={colors.grey[100]}
+            borderColor="#152538"
+            projectionType="mercator"
+            projectionScale={100}
+            fillColor="#ffffff"
+            graticuleLineWidth={0.5}
+            isInteractive={true}
             onMouseEnter={() => {}}
             onMouseMove={() => {}}
             onMouseLeave={() => {}}
             onClick={() => {}}
-            layers={['graticule', 'features']}
-            // role={}
-            // match={null}
-            // value=''
-            // colors="blues"
-            legends={!isDashboard ? 
-                [{
-                    anchor: 'bottom-left',
+            // layers={['graticule', 'features']}
+            // role="user"
+            theme={{
+                axis: {
+                    domain: {
+                        line: {
+                            stroke: theme.palette.secondary[200]
+                        }
+                    },
+                    legend: {
+                        text: {
+                            fill: theme.palette.grey[200]
+                        }
+                    },
+                    ticks: {
+                        line: {
+                            stroke: theme.palette.secondary[200],
+                            strokeWidth: 1,
+                        },
+                        text: {
+                            fill: theme.palette.secondary[200]
+                        }
+                    }
+                },
+                tooltip: {
+                    container: {
+                        color: '#000'
+                    }
+                }
+            }}
+            legends={!isDashboard ? [
+                {
+                    anchor: 'bottom-right',
                     direction: 'column',
                     justify: true,
-                    translateX: 20,
-                    translateY: -100,
+                    translateX: -20,
+                    translateY: -50,
                     itemsSpacing: 0,
-                    itemWidth: 94,
-                    itemHeight: 18,
+                    itemWidth: 100,
+                    itemHeight: 30,
                     itemDirection: 'left-to-right',
-                    itemTextColor: colors.secondary[100],
+                    itemTextColor: theme.palette.grey[200],
                     itemOpacity: 1,
-                    symbolSize: 18,
-                    
-                    effects: [
-                        {
-                            on: 'hover',
-                            style: {
-                                itemTextColor: '#fff',
-                                itemOpacity: 0,
-                            }
-                        }
-                    ]
-                }]: undefined }
+                    symbolSize: 30
+                }
+            ]:[]}
         />
     )
 }

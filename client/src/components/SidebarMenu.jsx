@@ -7,14 +7,12 @@ import {
     Groups2Outlined,
     ReceiptLongOutlined,
     PublicOutlined,
-    PointOfSaleOutlined,
-    TodayOutlined,
     CalendarMonthOutlined,
     PieChartOutlined,
     AdminPanelSettingsOutlined,
     TrendingUpOutlined,
+    BarChartOutlined
   } from '@mui/icons-material'
-  import { themeTokens } from "../theme/theme";
 
 export default function SidebarMenu(props) {
     const theme = useTheme();
@@ -42,65 +40,54 @@ export default function SidebarMenu(props) {
         },
         {
             title: 'Transactions',
-            path: '/invoices',
+            path: '/transactions',
             icon: <ReceiptLongOutlined />
         },
         {
             title: 'Geograpy',
-            path: '/invoices',
+            path: '/geography',
             icon: <PublicOutlined />
         },
+
+
         {
             kind: 'header',
-            title: 'Sales',
+            title: 'Pages',
         },
         {
-            title: 'Overview',
+            title: 'Profile Form',
             path: '/form',
-            icon: <PointOfSaleOutlined />
-        },
-        {
-            title: 'Daily',
-            path: '/calendar',
-            icon: <TodayOutlined />
-        },
-        {
-            title: 'Monthly',
-            path: '/faq',
-            icon: <CalendarMonthOutlined />
-        },
-        {
-            title: 'Breakdown',
-            path: '/faq',
-            icon: <PieChartOutlined />
-        },
-        {
-            kind: 'header',
-            title: 'Management',
-        },
-        {
-            title: 'Admin',
-            path: '/bar',
-            icon: <AdminPanelSettingsOutlined />
-        },
-        {
-            title: 'Performance',
-            path: '/pie',
-            icon: <TrendingUpOutlined />
-        },
-        {
-            kind: 'header',
-            title: 'Administration',
-        },
-        {
-            title: 'Team',
-            path: '/team',
             icon: <Person2Outlined />
         },
         {
-            title: 'Contacts',
-            path: '/contacts',
-            icon: <Groups2Outlined />
+            title: 'Calendar',
+            path: '/calendar',
+            icon: <CalendarMonthOutlined />
+        },
+        {
+            title: 'Faq Page',
+            path: '/faq',
+            icon: <AdminPanelSettingsOutlined />
+        },
+        
+        {
+            kind: 'header',
+            title: 'Charts',
+        },
+        {
+            title: 'Bar Chart',
+            path: '/bar',
+            icon: <BarChartOutlined />
+        },
+        {
+            title: 'Pie Chart',
+            path: '/pie',
+            icon: <PieChartOutlined />
+        },
+        {
+            title: 'Line Chart',
+            path: '/line',
+            icon: <TrendingUpOutlined />
         },
     ]
 

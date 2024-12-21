@@ -9,7 +9,7 @@ export default function Product() {
   const theme = useTheme()
   const isNonMobile = useMediaQuery("(min-width: 1000px)")
   const { data, isLoading, isError } = useFetchProductsQuery()
-console.log(data)
+
   const columns = [
     { field: 'id', headerName: 'ID',  headerAlign: 'center', align: 'center', headerClassName: 'mui-table-header' },
     { field: 'name', headerName: 'Name', flex: 1,  cellClassName: 'name-column--cell', headerClassName: 'mui-table-header' },

@@ -62,280 +62,271 @@ const Dashboard = () => {
 
   return (
     <Box m="20px">
-      {/* HEADER */}
-      
-      <Box display="flex" justifyContent="space-between" alignItems="center" my={4}>
-        <PageHeading title="DASHBOARD" subtitle="Welcome to your dashboard" />
-        <Box>
-          <Button
-            sx={{
-              // backgroundColor: theme.palette.[700],
-              color: colors.grey[100],
-              fontSize: "14px",
-              fontWeight: "bold",
-              padding: "10px 20px",
-            }}
-            onClick={onDeleteUser}
-          >
-            <DownloadOutlinedIcon sx={{ mr: "10px" }} />
-            Download Reports
-          </Button>
-        </Box>
+    {/* HEADER */}
+    <Box display="flex" justifyContent="space-between" alignItems="center"  mb={4}>
+      <PageHeading title="DASHBOARD" subtitle="Welcome to your dashboard" />
+
+      <Box>
+        <Button
+          sx={{
+            backgroundColor: colors.blueAccent[700],
+            color: colors.grey[100],
+            fontSize: "14px",
+            fontWeight: "bold",
+            padding: "10px 20px",
+          }}
+        >
+          <DownloadOutlinedIcon sx={{ mr: "10px" }} />
+          Download Reports
+        </Button>
+      </Box>
+    </Box>
+
+    {/* GRID & CHARTS */}
+    <Box
+      display="grid"
+      gridTemplateColumns="repeat(12, 1fr)"
+      gridAutoRows="140px"
+      gap="20px"
+    >
+      {/* ROW 1 */}
+      <Box
+        gridColumn="span 3"
+        backgroundColor={colors.primary[700]}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        padding={2}
+      >
+        <StatBox
+          title="12,361"
+          subtitle="Emails Sent"
+          progress="0.75"
+          increase="+14%"
+          icon={
+            <EmailIcon
+              sx={{ color: colors.secondary[600], fontSize: "26px" }}
+            />
+          }
+        />
+      </Box>
+      <Box
+        gridColumn="span 3"
+        backgroundColor={colors.primary[700]}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        padding={2}
+      >
+        <StatBox
+          title="431,225"
+          subtitle="Sales Obtained"
+          progress="0.50"
+          increase="+21%"
+          icon={
+            <PointOfSaleIcon
+              sx={{ color: colors.secondary[600], fontSize: "26px" }}
+            />
+          }
+        />
+      </Box>
+      <Box
+        gridColumn="span 3"
+        backgroundColor={colors.primary[700]}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        padding={2}
+      >
+        <StatBox
+          title="32,441"
+          subtitle="New Clients"
+          progress="0.30"
+          increase="+5%"
+          icon={
+            <PersonAddIcon
+              sx={{ color: colors.secondary[600], fontSize: "26px" }}
+            />
+          }
+        />
+      </Box>
+      <Box
+        gridColumn="span 3"
+        backgroundColor={colors.primary[700]}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        padding={2}
+      >
+        <StatBox
+          title="1,325,134"
+          subtitle="Traffic Received"
+          progress="0.80"
+          increase="+43%"
+          icon={
+            <TrafficIcon
+              sx={{ color: colors.secondary[600], fontSize: "26px" }}
+            />
+          }
+        />
       </Box>
 
-      {/* GRID & CHARTS */}
-
-        {/* ROW 1 */}
+      {/* ROW 2 */}
       <Box
-        display="flex"
-        gap={4}
-        flexWrap="wrap"
-        minWidth="150px"
+        gridColumn="span 8"
+        gridRow="span 2"
+        backgroundColor={colors.primary[700]}
       >
         <Box
-          flex={1}
-          backgroundColor={colors.primary[500]}
-          display="flex"
+          mt="25px"
+          p="0 30px"
+          display="flex "
+          justifyContent="space-between"
           alignItems="center"
-          justifyContent="center"
-          p={2}
         >
-          <StatBox
-            title="12,361"
-            subtitle="Emails Sent"
-            progress="0.75"
-            increase="+14%"
-            icon={
-              <EmailIcon
-                sx={{ color: colors.secondary[600], fontSize: "26px" }}
+          <Box>
+            <Typography
+              variant="h5"
+              fontWeight="600"
+              color="#eee"
+            >
+              Revenue Generated
+            </Typography>
+            <Typography
+              variant="h3"
+              fontWeight="bold"
+              color={colors.secondary[500]}
+            >
+              $59,342.32
+            </Typography>
+          </Box>
+          <Box>
+            <IconButton>
+              <DownloadOutlinedIcon
+                sx={{ fontSize: "26px", color: colors.secondary[500] }}
               />
-            }
-          />
+            </IconButton>
+          </Box>
         </Box>
-        <Box
-         flex={1}
-          backgroundColor={colors.primary[500]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          p={2}
-        >
-          <StatBox
-            title="431,225"
-            subtitle="Sales Obtained"
-            progress="0.50"
-            increase="+21%"
-            icon={
-              <PointOfSaleIcon
-                sx={{ color: colors.secondary[600], fontSize: "26px" }}
-              />
-            }
-          />
+        <Box height="250px" m="-20px 0 0 0">
+          <LineChart isDashboard={true} data={mockLineData} />
         </Box>
-        <Box
-         flex={1}
-          backgroundColor={colors.primary[500]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          p={2}
-        >
-          <StatBox
-            title="32,441"
-            subtitle="New Clients"
-            progress="0.30"
-            increase="+5%"
-            icon={
-              <PersonAddIcon
-                sx={{ color: colors.secondary[600], fontSize: "26px" }}
-              />
-            }
-          />
-        </Box>
-        <Box
-          flex={1}
-          backgroundColor={colors.primary[500]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          p={2}
-        >
-          <StatBox
-            title="1,325,134"
-            subtitle="Traffic Received"
-            progress="0.80"
-            increase="+43%"
-            icon={
-              <TrafficIcon
-                sx={{ color: colors.secondary[600], fontSize: "26px" }}
-              />
-            }
-          />
-        </Box>
-
       </Box>
-
-
-        {/* ROW 2 */}
-      <Box>
-        
+      <Box
+        gridColumn="span 4"
+        gridRow="span 2"
+        backgroundColor={colors.primary[700]}
+        overflow="auto"
+      >
         <Box
-          gridColumn="span 8"
-          gridRow="span 2"
-          backgroundColor={colors.primary[600]}
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          borderBottom={`4px solid ${colors.primary[500]}`}
+          colors={colors.grey[400]}
+          p="15px"
         >
-          <Box
-            mt="25px"
-            p="0 30px"
-            display="flex "
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Box>
-              <Typography
-                variant="h5"
-                fontWeight="600"
-                color={colors.grey[100]}
-              >
-                Revenue Generated
-              </Typography>
-              <Typography
-                variant="h3"
-                fontWeight="bold"
-                color={colors.secondary[500]}
-              >
-                $59,342.32
-              </Typography>
-            </Box>
-            <Box>
-              <IconButton>
-                <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.secondary[500] }}
-                />
-              </IconButton>
-            </Box>
-          </Box>
-          <Box height="250px" m="-20px 0 0 0">
-            <LineChart data={mockLineData} isDashboard={true} />
-          </Box>
+          <Typography color="#eee" variant="h5" fontWeight="600">
+            Recent Transactions
+          </Typography>
         </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[600]}
-          overflow="auto"
-        >
+        {mockTransactions.map((transaction, i) => (
           <Box
+            key={`${transaction.txId}-${i}`}
             display="flex"
             justifyContent="space-between"
             alignItems="center"
             borderBottom={`4px solid ${colors.primary[500]}`}
-            colors={colors.grey[100]}
             p="15px"
           >
-            <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Recent Transactions
-            </Typography>
-          </Box>
-          {mockTransactions.map((transaction, i) => (
-            <Box
-              key={`${transaction.txId}-${i}`}
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              borderBottom={`4px solid ${colors.primary[500]}`}
-              p="15px"
-            >
-              <Box>
-                <Typography
-                  color={colors.secondary[500]}
-                  variant="h5"
-                  fontWeight="600"
-                >
-                  {transaction.txId}
-                </Typography>
-                <Typography color={colors.grey[100]}>
-                  {transaction.user}
-                </Typography>
-              </Box>
-              <Box color={colors.grey[100]}>{transaction.date}</Box>
-              <Box
-                backgroundColor={colors.secondary[500]}
-                p="5px 10px"
-                borderRadius="4px"
+            <Box>
+              <Typography
+                color="#eee"
+                variant="h5"
+                fontWeight="600"
               >
-                ${transaction.cost}
-              </Box>
+                {transaction.txId}
+              </Typography>
+              <Typography color="#eee">
+                {transaction.user}
+              </Typography>
             </Box>
-          ))}
-        </Box>
-
-      </Box>
-
-        {/* ROW 3 */}
-      <Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[600]}
-          p="30px"
-        >
-          <Typography variant="h5" fontWeight="600">
-            Campaign
-          </Typography>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            mt="25px"
-          >
-            <ProgressCircle size="150px" />
-            <Typography
-              variant="h5"
-              color={colors.secondary[500]}
-              sx={{ mt: "15px" }}
+            <Box color="#eee">{transaction.date}</Box>
+            <Box
+              backgroundColor={colors.secondary[500]}
+              p="5px 10px"
+              borderRadius="4px"
             >
-              $48,352 revenue generated
-            </Typography>
-            <Typography>Includes extra misc expenditures and costs</Typography>
+              ${transaction.cost}
+            </Box>
           </Box>
-        </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[600]}
-        >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ padding: "30px 30px 0 30px" }}
-          >
-            Sales Quantity
-          </Typography>
-          <Box height="250px" mt="-20px">
-            <BarChart data={mockBarData} isDashboard={true} />
-          </Box>
-        </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[600]}
-          padding="30px"
-        >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ marginBottom: "15px" }}
-          >
-            Geography Based Traffic
-          </Typography>
-          <Box height="200px">
-            <GeographyChart data={mockGeographyData} geoFeatures={geoFeatures} isDashboard={true} />
-          </Box>
-        </Box>
+        ))}
       </Box>
 
+      {/* ROW 3 */}
+      <Box
+        gridColumn="span 4"
+        gridRow="span 2"
+        backgroundColor={colors.primary[400]}
+        p="30px"
+      >
+        <Typography variant="h5" fontWeight="600" color="#eee">
+          Campaign
+        </Typography>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          mt="25px"
+        >
+          <ProgressCircle size="125" />
+          <Typography
+            variant="h5"
+            color={colors.secondary[500]}
+            sx={{ mt: "15px" }}
+          >
+            $48,352 revenue generated
+          </Typography>
+          <Typography color="#eee">Includes extra misc expenditures and costs</Typography>
+        </Box>
+      </Box>
+      <Box
+        gridColumn="span 4"
+        gridRow="span 2"
+        backgroundColor={colors.primary[400]}
+      >
+        <Typography
+          variant="h5"
+          fontWeight="600"
+          sx={{ padding: "30px 30px 0 30px" }}
+          color="#eee"
+        >
+          Sales Quantity
+        </Typography>
+        <Box height="250px" mt="-20px">
+          <BarChart isDashboard={true} data={mockBarData} />
+        </Box>
+      </Box>
+      <Box
+        gridColumn="span 4"
+        gridRow="span 2"
+        backgroundColor={colors.primary[400]}
+        padding="30px"
+      >
+        <Typography
+          variant="h5"
+          fontWeight="600"
+          sx={{ marginBottom: "15px" }}
+          color="#eee"
+        >
+          Geography Based Traffic
+        </Typography>
+        <Box height="200px">
+          <GeographyChart isDashboard={true} data={mockGeographyData} geoFeatures={geoFeatures} />
+        </Box>
+      </Box>
     </Box>
+  </Box>
   );
 };
 

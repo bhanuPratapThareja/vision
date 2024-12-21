@@ -10,6 +10,8 @@ import morgan from 'morgan'
 import generalRouter from './routes/general.route.js'
 import clientRouter from './routes/client.route.js'
 
+// import { dataTransaction } from './data/index.js'
+
 dotenv.config()
 const app = express()
 const __dirname = path.resolve()
@@ -22,6 +24,7 @@ app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'client', 'dist')))
+
 
 app.use('/api/general', generalRouter)
 app.use('/api/client', clientRouter)
@@ -40,5 +43,6 @@ mongoose
           process.env.PORT || 5000,
           console.log(`Server is running on port ${process.env.PORT || 5000}`),
         );
+
       })
       .catch((err) => console.log('Error connect to DB ', err))

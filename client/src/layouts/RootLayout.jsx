@@ -12,15 +12,15 @@ export default function RootLayout() {
   const { mode } = useSelector(state => state.theme)
   // const { userId } = useSelector(state => state.user)
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
-  const { data } = useFetchUserQuery('userId', {
+  // const { data } = useFetchUserQuery('userId', {
    
-  })
-  console.log('rootlayout re render fetch: ', data)
+  // })
+  // console.log('rootlayout re render fetch: ', data)
 
   return (
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Sidebar user={data?.user} />
+          <Sidebar user={null?.user} />
         </ThemeProvider>
   )
 }

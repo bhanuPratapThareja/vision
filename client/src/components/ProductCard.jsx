@@ -37,9 +37,7 @@ export default function ProductCard({ item }) {
                 in={isExpanded}
                 timeout="auto"
                 unmountOnExit
-                sx={{
-                    color: theme.palette.neutral[300]
-                }}
+                sx={{ color: theme.palette.neutral[300] }}
             >
                 <CardContent>
                     <Typography>Supply Left: {product.supply}</Typography>
